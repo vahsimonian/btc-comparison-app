@@ -1,14 +1,16 @@
-import { useState, ChangeEventHandler } from 'react'
+import { ChangeEventHandler } from 'react'
 
-type InputProps = {
+export type InputProps = {
   value: string
   onChange: ChangeEventHandler<HTMLInputElement>
   className?: string
+  placeholder?: string
 }
 
 const Input = (props: InputProps) => {
   return (
     <input
+      placeholder={props.placeholder}
       type='text'
       className={'border border-white/20 bg-blue-950 p-2 ' + props.className}
       value={props.value}
