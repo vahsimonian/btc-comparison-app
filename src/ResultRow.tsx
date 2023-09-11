@@ -4,7 +4,7 @@ type ResultRowProps = {
 
 function ResultRow({ loading }: ResultRowProps) {
   return (
-    <div className='relative border border-white/10 rounded-lg bg-gradient-to-r from-purple-500/10 to-blue-500/10 p-4 my-2'>
+    <div className='relative border border-white/10 rounded-lg bg-gradient-to-r from-purple-500/10 to-blue-500/10 p-4 my-2 overflow-hidden'>
       <div className='flex gap-4'>
         <div>logo</div>
         <div className='grow'>provider name</div>
@@ -13,7 +13,9 @@ function ResultRow({ loading }: ResultRowProps) {
           <span className='text-xl text-purple-200/50'>BTC</span>
         </div>
       </div>
-      {loading && <div className='bg-red-500 inset-0 absolute' />}
+      {loading && (
+        <div className='inset-0 absolute bg-gradient-to-r from-transparent via-blue-800/50 to-transparent skeleton-animation' />
+      )}
     </div>
   )
 }

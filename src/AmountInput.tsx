@@ -3,7 +3,7 @@ import { InputProps } from './Input'
 
 function AmountInput(props: InputProps) {
   return (
-    <div className='flex items-center bg-blue-950 border border-white/10 rounded-lg overflow-hidden'>
+    <div className='flex items-center bg-blue-950 border border-white/10 rounded-lg overflow-hidden mb-4'>
       <Input
         placeholder={props.placeholder}
         className='border-0 w-24 pl-4 text-2xl'
