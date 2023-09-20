@@ -3,17 +3,23 @@ import AmountInput from './AmountInput'
 import ResultRow from './ResultRow'
 import axios from 'axios'
 
+type CachedResults = {
+  provider: string
+  btc: string
+}
+
 function App() {
   const [amount, setAmount] = useState('100')
-  const [cachedResults, setCachedResults] = useState([])
+  const [cachedResults, setCachedResults] = useState<CachedResults[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
   console.log(cachedResults)
 
   useEffect(() => {
-    axios
-      .get('https://62tfa75d3v.us.aircode.run/cachedValues')
-      .then((res) => setCachedResults(res.data))
+    axios.get('https://62tfa75d3v.us.aircode.run/cachedValues').then((res) => {
+      setCachedResults(res.data)
+      setIsLoading(false)
+    })
   }, [])
 
   return (
@@ -28,14 +34,24 @@ function App() {
           onChange={(e) => setAmount(e.target.value)}
         />
       </div>
-      {isLoading && (
-        <>
-          <ResultRow loading={true} />
-          <ResultRow loading={true} />
-          <ResultRow loading={true} />
-          <ResultRow loading={true} />
-        </>
-      )}
+      <div className='mt-6'>
+        {isLoading && (
+          <>
+            <ResultRow loading={true} />
+            <ResultRow loading={true} />
+            <ResultRow loading={true} />
+            <ResultRow loading={true} />
+          </>
+        )}
+        {!isLoading &&
+          cachedResults.map((result) => (
+            <ResultRow
+              // key={result._id}
+              providerName={result.provider}
+              btc={result.btc}
+            />
+          ))}
+      </div>
     </main>
   )
 }

@@ -13,7 +13,11 @@ function ResultRow({ loading, providerName, btc }: ResultRowProps) {
         <div className='grow'>{providerName || ''}</div>
         {btc && (
           <div className='flex gap-2'>
-            <span className='text-xl text-purple-200/80'>0.000</span>
+            <span className='text-xl text-purple-200/80'>
+              {new Intl.NumberFormat('sv-SE', {
+                minimumFractionDigits: 8,
+              }).format(parseFloat(btc))}
+            </span>
             <span className='text-xl text-purple-200/50'>BTC</span>
           </div>
         )}
