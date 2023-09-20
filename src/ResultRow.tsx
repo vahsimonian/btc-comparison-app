@@ -9,7 +9,7 @@ function ResultRow({ loading }: ResultRowProps) {
         <div>logo</div>
         <div className='grow'>provider name</div>
         <div className='flex gap-2'>
-          <span className='text-xl text-purple-200/80'>0.000</span>
+          <span className='text-xl text-purple-200/80'>0.0000</span>
           <span className='text-xl text-purple-200/50'>BTC</span>
         </div>
       </div>
