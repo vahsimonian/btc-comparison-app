@@ -18,7 +18,7 @@ function ResultRow({ loading, providerName, btc }: ResultRowProps) {
                 minimumFractionDigits: 8,
               }).format(parseFloat(btc))}
             </span>
-            <span className='text-xl text-purple-200/50'>BTC</span>
+            <span className='text-xl text-purple-200/50'>BitCoin</span>
           </div>
         )}
       </div>
