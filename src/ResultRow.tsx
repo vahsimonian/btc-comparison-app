@@ -14,7 +14,7 @@ function ResultRow({ loading, providerName, btc }: ResultRowProps) {
         {btc && (
           <div className='flex gap-2'>
             <span className='text-xl text-purple-200/80'>
-              {new Intl.NumberFormat('ru-RU', {
+              {new Intl.NumberFormat('sv-SE', {
                 minimumFractionDigits: 8,
               }).format(parseFloat(btc))}
             </span>
