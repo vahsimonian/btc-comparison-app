@@ -1,3 +1,4 @@
+import him from './assets/paybis.png'
 
 
 type ResultRowProps = {
@@ -16,7 +17,7 @@ function ResultRow({ loading, providerName, btc }: ResultRowProps) {
       <div className='flex gap-4'>
         <div className='h-6'>A</div>
         {providerName && <div>
-          <img src={logosUrl.paybis} className="w-6 h-5" alt="" />
+          <img src={him} alt="bit"width={60} className='invert' />
           </div>}
         <div className='grow'>{providerName || ''}</div>
         {btc && (

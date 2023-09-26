@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import AmountInput from './AmountInput'
 import ResultRow from './ResultRow'
 import axios from 'axios'
-import him from './assets/paybis.png'
+
 
 type CachedResults = {
   provider: string
@@ -29,7 +29,7 @@ function App() {
       <h1 className='uppercase text-6xl text-center font-semibold bg-gradient-to-br from-purple-600 to-sky-400 bg-clip-text text-transparent from-30%'>
         Find the cheapest BitCoin
       </h1>
-      <img src={him} alt="bit" />
+      
       <div className='flex justify-center mt-8'>
         <AmountInput
           placeholder={'amount'}
