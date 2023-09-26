@@ -7,7 +7,8 @@ type ResultRowProps = {
   btc?: string 
 }
 
-const logos = {
+type Logo = {source:string, invert?:boolean}
+const logos:{[keys:string]:Logo} = {
   paybis: {source:paybisLogo, invert:true},
     guardian: {source: 'https://guardarian.com/main-logo.svg'},
     moonpay: {source:'https://www.moonpay.com/assets/logo-full-white.svg'}, 
@@ -20,7 +21,9 @@ function ResultRow({ loading, providerName, btc }: ResultRowProps) {
       <div className='flex gap-4'>
         <div className='h-6'>A</div>
         {providerName && <div>
-          <img src={logos[providerName as keyof typeof logos].source} alt="bit"width={60} />
+          <img src={logos[providerName]?.source}
+          className={logos[providerName]?.invert ? 'invert': ''}
+          alt="bit"width={60} />
           </div>} 
         <div className='grow'>{providerName || ''}</div>
         {btc && (
