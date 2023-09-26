@@ -1,14 +1,17 @@
-import him from './assets/paybis.png'
+import paybisLogo from './assets/paybis.png'
 
 
 type ResultRowProps = {
   loading?: boolean
   providerName?: string
-  btc?: string
+  btc?: string 
 }
 
 const logosUrl = {
-  paybis: '/assets/paybis.png'
+  paybis: {source:paybisLogo, invert:true},
+  guardian: {source: 'https://guardarian.com/main-logo.svg'},
+  moonpay: {source:'https://www.moonpay.com/assets/logo-full-white.svg'}, 
+  transak: {source:'https://assets.transak.com/images/website/transak-logo.svg'} 
 }
 
 function ResultRow({ loading, providerName, btc }: ResultRowProps) {
@@ -17,7 +20,7 @@ function ResultRow({ loading, providerName, btc }: ResultRowProps) {
       <div className='flex gap-4'>
         <div className='h-6'>A</div>
         {providerName && <div>
-          <img src={him} alt="bit"width={60} className='invert' />
+          <img src={paybisLogo} alt="bit"width={60} className='invert' />
           </div>}
         <div className='grow'>{providerName || ''}</div>
         {btc && (
