@@ -4,25 +4,27 @@ import ResultRow from './ResultRow'
 import axios from 'axios'
 import useDebouncedEffect from 'use-debounced-effect'
 
-type CachedResults = {
+type CachedResult = {
   provider: string
   btc: string
   _id: string
 }
+
+type OfferResults = {[keys: string]: string}
 
 const defaultAmount = '100'
 
 function App() {
   const [amount, setAmount] = useState(defaultAmount)
   const [prevAmount, setPrevAmount] = useState(defaultAmount)
-  const [cachedResults, setCachedResults] = useState<CachedResults[]>([])
-  const [offerResults, setOfferResults] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
+  const [cachedResults, setCachedResults] = useState<CachedResult[]>([])
+  const [offerResults, setOfferResults] = useState<OfferResults>({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     axios.get('https://62tfa75d3v.us.aircode.run/cachedValues').then((res) => {
       setCachedResults(res.data)
-      setIsLoading(false)
+      setLoading(false)
     })
   }, [])
 
@@ -31,15 +33,16 @@ function App() {
       axios
       .get(`https://62tfa75d3v.us.aircode.run/providers?amount=${amount}`)
       .then(res => {
-        setIsLoading(true)
+        setLoading(true)
         setOfferResults(res.data)
         setPrevAmount(amount)
       })
     }
   }, 300,[amount])
 
-  const sortedResults:CachedResults = Object.keys(offerResults).map((provider) => ({
-    return {provider, bts:offerResults[provider]}
+  const sortedResults:CachedResult = Object.keys(offerResults).map((provider) => ({
+    provider,
+    btc:offerResults[provider]
   }))
   const showCached = amount === prevAmount
 
@@ -58,7 +61,7 @@ function App() {
         />
       </div>
       <div className='mt-6'>
-        {isLoading && (
+        {loading && (
           <>
             <ResultRow loading={true} />
             <ResultRow loading={true} />
@@ -66,17 +69,21 @@ function App() {
             <ResultRow loading={true} />
           </>
         )}
-        {!isLoading &&
-          cachedResults.map((result) => (
+        {!loading &&
+          cachedResults.map((result:CachedResult) => (
             <ResultRow
               key={result._id}
               providerName={result.provider}
               btc={result.btc}
             />
-          ))}
-       {!loading && !showCached && (
-
-       )}
+            ))}
+       {!loading && !showCached && sortedResults.map((result) => (
+         <ResultRow
+           key={result._id}
+           providerName={result.provider}
+           btc={result.btc}
+         />
+       ))}
       </div>
     </main>
   )
