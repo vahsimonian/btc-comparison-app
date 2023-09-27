@@ -10,9 +10,13 @@ type CachedResults = {
   _id: string
 }
 
+const defaultAmount = '100'
+
 function App() {
-  const [amount, setAmount] = useState(100)
+  const [amount, setAmount] = useState(defaultAmount)
+  const [prevAmount, setPrevAmount] = useState(defaultAmount)
   const [cachedResults, setCachedResults] = useState<CachedResults[]>([])
+  const [offerResults, setOfferResults] = useState({})
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -23,11 +27,25 @@ function App() {
   }, [])
 
   useDebouncedEffect(() => {
-    console.log('check for' + amount   )
-  },[amount], 300)
+    if(amount !== prevAmount) {
+      axios
+      .get(`https://62tfa75d3v.us.aircode.run/providers?amount=${amount}`)
+      .then(res => {
+        setIsLoading(true)
+        setOfferResults(res.data)
+        setPrevAmount(amount)
+      })
+    }
+  }, 300,[amount])
+
+  const sortedResults:CachedResults = Object.keys(offerResults).map((provider) => ({
+    return {provider, bts:offerResults[provider]}
+  }))
+  const showCached = amount === prevAmount
 
   return (
     <main className='max-w-4xl mx-auto px-4 py-8'>
+      {amount}
       <h1 className='uppercase text-6xl text-center font-semibold bg-gradient-to-br from-purple-600 to-sky-400 bg-clip-text text-transparent from-30%'>
         Find the cheapest BitCoin
       </h1>
@@ -56,6 +74,9 @@ function App() {
               btc={result.btc}
             />
           ))}
+       {!loading && !showCached && (
+
+       )}
       </div>
     </main>
   )
