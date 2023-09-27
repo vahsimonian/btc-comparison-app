@@ -19,13 +19,13 @@ function ResultRow({ loading, providerName, btc }: ResultRowProps) {
   return (
     <div className='relative border min-h-[64px] border-white/10 rounded-lg bg-gradient-to-r from-purple-500/10 to-blue-500/10 p-4 my-2 overflow-hidden'>
       <div className='flex gap-4'>
-        <div className='h-6'>A</div>
-        {providerName && <div>
+        {providerName && 
+        <div className='grow items-center flex'>
           <img src={logos[providerName]?.source}
           className={logos[providerName]?.invert ? 'invert': ''}
-          alt="bit"width={60} />
+          alt="bit" width={120} />
           </div>} 
-        <div className='grow'>{providerName || ''}</div>
+          
         {btc && (
           <div className='flex gap-2'>
             <span className='text-xl text-purple-200/80'>
