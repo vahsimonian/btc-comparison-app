@@ -15,14 +15,16 @@ function App() {
   const [cachedResults, setCachedResults] = useState<CachedResults[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
-  console.log(cachedResults)
-
   useEffect(() => {
     axios.get('https://62tfa75d3v.us.aircode.run/cachedValues').then((res) => {
       setCachedResults(res.data)
       setIsLoading(false)
     })
   }, [])
+console.log('check for ' + amount)
+  useEffect(() => {
+
+  },[amount])
 
   return (
     <main className='max-w-4xl mx-auto px-4 py-8'>
