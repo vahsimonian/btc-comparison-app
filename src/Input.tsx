@@ -7,7 +7,7 @@ export type InputProps = {
   placeholder?: string
 }
 
-const Input = (props: InputProps) => {
+const Input = (props:  InputProps) => {
   return (
     <input
       placeholder={props.placeholder}

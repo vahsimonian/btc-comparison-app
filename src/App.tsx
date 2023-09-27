@@ -11,7 +11,7 @@ type CachedResults = {
 }
 
 function App() {
-  const [amount, setAmount] = useState('100')
+  const [amount, setAmount] = useState(100)
   const [cachedResults, setCachedResults] = useState<CachedResults[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -21,17 +21,17 @@ function App() {
       setIsLoading(false)
     })
   }, [])
-  
-  useEffect(() => {
 
-  },[amount])
+  useDebouncedEffect(() => {
+    console.log('check for' + amount   )
+  },[amount], 300)
 
   return (
     <main className='max-w-4xl mx-auto px-4 py-8'>
       <h1 className='uppercase text-6xl text-center font-semibold bg-gradient-to-br from-purple-600 to-sky-400 bg-clip-text text-transparent from-30%'>
         Find the cheapest BitCoin
       </h1>
-      
+
       <div className='flex justify-center mt-8'>
         <AmountInput
           placeholder={'amount'}
