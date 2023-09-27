@@ -5,12 +5,12 @@ import axios from 'axios'
 import useDebouncedEffect from 'use-debounced-effect'
 
 type CachedResult = {
-  provider: string
-  btc: string
-  _id: string
+  provider?: string
+  btc?: string
+  _id?: string
 }
 
-type OfferResults = {[keys: string]: string}
+type OfferResults = {[keys: string]:string}
 
 const defaultAmount = '100'
 
@@ -29,10 +29,13 @@ function App() {
   }, [])
 
   useDebouncedEffect(() => {
+    if(amount === defaultAmount){
+      return
+    }
     if(amount !== prevAmount) {
       setLoading(true)
       axios
-      .get(`https://62tfa75d3v.us.aircode.run/providers?amount=${amount}`)
+      .get(`https://62tfa75d3v.us.aircode.run/offers?amount=${amount}`)
       .then(res => {
         setLoading(false)
         setOfferResults(res.data)
@@ -41,7 +44,7 @@ function App() {
     }
   }, 300,[amount])
 
-  const sortedResults:CachedResult = Object.keys(offerResults).map((provider) => ({
+  const sortedResults:CachedResult[] = Object.keys(offerResults).map((provider) => ({
     provider,
     btc:offerResults[provider],
   }))
@@ -50,7 +53,6 @@ function App() {
 
   return (
     <main className='max-w-4xl mx-auto px-4 py-8'>
-      {amount}
       <h1 className='uppercase text-6xl text-center font-semibold bg-gradient-to-br from-purple-600 to-sky-400 bg-clip-text text-transparent from-30%'>
         Find the cheapest BitCoin
       </h1>
