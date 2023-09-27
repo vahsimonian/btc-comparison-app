@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import AmountInput from './AmountInput'
 import ResultRow from './ResultRow'
 import axios from 'axios'
-
+import useDebouncedEffect from 'use-debounced-effect'
 
 type CachedResults = {
   provider: string
@@ -21,7 +21,7 @@ function App() {
       setIsLoading(false)
     })
   }, [])
-console.log('check for ' + amount)
+  
   useEffect(() => {
 
   },[amount])
