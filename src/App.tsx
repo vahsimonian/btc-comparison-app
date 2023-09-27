@@ -4,13 +4,14 @@ import ResultRow from './ResultRow'
 import axios from 'axios'
 import useDebouncedEffect from 'use-debounced-effect'
 
+   
 type CachedResult = {
   provider?: string
   btc?: string
   _id?: string
 }
-
-type OfferResults = {[keys: string]:string}
+  
+type OfferResults = {[keys: string]:string    }
 
 const defaultAmount = '100'
 
@@ -42,10 +43,13 @@ function App() {
         setPrevAmount(amount)
       })
     }
-  }, 300,[amount])
+  }, 300,[amount]   )
 
-  const sortedResults:CachedResult[] = Object.keys(offerResults).map((provider) => ({
-    provider,
+
+
+  
+  const sortedResults:CachedResult[] = Object.keys(offerResults).map((provider) => ({   
+    provider,    
     btc:offerResults[provider],
   }))
 

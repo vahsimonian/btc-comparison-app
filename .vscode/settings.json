@@ -1,6 +1,12 @@
 {
+    "editor.formatOnType": false,
+    "scm.diffDecorationsIgnoreTrimWhitespace": "false",
+    "files.trimTrailingWhitespace": false,
     "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
-    "editor.trimAutoWhitespace": false,
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.codeLens": true,
+    "reactSnippets.settings.prettierEnabled": false,
+    "prettier.requireConfig": false,
+    "editor.formatOnSave": true,
+    "notebook.formatOnSave.enabled": true,
+    "editor.formatOnPaste": true
 }

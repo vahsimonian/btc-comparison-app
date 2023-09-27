@@ -16,11 +16,9 @@ const logos:{[keys:string]:Logo} = {
 }
 
 
+
+
 function ResultRow({ loading, providerName, btc }: ResultRowProps) {
-
-
-
-
 
   return (
     <a href={`https://${providerName}.com`} target='_blank'>
