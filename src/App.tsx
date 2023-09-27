@@ -30,10 +30,11 @@ function App() {
 
   useDebouncedEffect(() => {
     if(amount !== prevAmount) {
+      setLoading(true)
       axios
       .get(`https://62tfa75d3v.us.aircode.run/providers?amount=${amount}`)
       .then(res => {
-        setLoading(true)
+        setLoading(false)
         setOfferResults(res.data)
         setPrevAmount(amount)
       })
@@ -42,8 +43,9 @@ function App() {
 
   const sortedResults:CachedResult = Object.keys(offerResults).map((provider) => ({
     provider,
-    btc:offerResults[provider]
+    btc:offerResults[provider],
   }))
+
   const showCached = amount === prevAmount
 
   return (
@@ -77,13 +79,13 @@ function App() {
               btc={result.btc}
             />
             ))}
-       {!loading && !showCached && sortedResults.map((result) => (
-         <ResultRow
-           key={result._id}
-           providerName={result.provider}
-           btc={result.btc}
-         />
-       ))}
+        {!loading && !showCached && sortedResults.map((result:CachedResult) => (
+          <ResultRow
+            key={result._id}
+            providerName={result.provider}
+            btc={result.btc}
+          />
+        ))}
       </div>
     </main>
   )
