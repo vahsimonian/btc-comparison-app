@@ -80,7 +80,7 @@ function App() {
           </>
         )}
         {!loading &&
-          cachedResults.map((result: CachedResult) => (
+          cachedResults.map((result) => (
             <ResultRow
               key={result._id}
               providerName={result.provider}
@@ -89,7 +89,7 @@ function App() {
           ))}
         {!loading &&
           !showCached &&
-          sortedResults.map((result: CachedResult) => (
+          sortedResults.map((result) => (
             <ResultRow
               key={result._id}
               providerName={result.provider}
