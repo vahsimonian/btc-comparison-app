@@ -18,7 +18,7 @@ const logos: { [keys: string]: Logo } = {
 
 function ResultRow({ loading, providerName, btc }: ResultRowProps) {
   return (
-    <a href={`https://${providerName}.com`} target="_blank">
+    <a href={`https://${providerName}.com`} target="_blank" rel="noreferrer">
       <div className="block relative border min-h-[64px] border-white/10 rounded-lg bg-gradient-to-r from-purple-500/10 to-blue-500/10 p-4 my-2 overflow-hidden">
         <div className="flex gap-4">
           {providerName && (
